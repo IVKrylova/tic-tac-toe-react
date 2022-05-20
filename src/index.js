@@ -4,17 +4,13 @@ import './index.css';
 
 // клетка
 class Square extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
-
   render() {
     return (
-      <button className="square" onClick={() => { this.setState({value: 'X'}) }}>
-        {this.state.value}
+      <button
+        className="square"
+        onClick={() => this.props.onClick()}
+      >
+        {this.props.value}
       </button>
     );
   }
@@ -22,9 +18,32 @@ class Square extends React.Component {
 
 // поле
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    // состояние всего поля
+    this.state = {
+      squares: Array(9).fill(null),
+    };
+  }
+
+  // обработчик клика по клетке
+  handleClick(i) {
+    // копируем старое поле в новую переменную
+    const squares = this.state.squares.slice();
+    // заполняем выбранную клекту крестиком
+    squares[i] = 'X';
+    // устанавливаем новое поле
+    this.setState({squares: squares});
+  }
+
   // метод рендера одной клетки
   renderSquare(i) {
-    return <Square value={i} />;
+    return (
+      <Square
+        value={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {
