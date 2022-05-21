@@ -18,6 +18,8 @@ class Board extends React.Component {
     // состояние всего поля
     this.state = {
       squares: Array(9).fill(null),
+      // первым ходит игрок Х
+      xIsNext: true,
     };
   }
 
@@ -25,10 +27,13 @@ class Board extends React.Component {
   handleClick(i) {
     // копируем старое поле в новую переменную
     const squares = this.state.squares.slice();
-    // заполняем выбранную клекту крестиком
-    squares[i] = 'X';
-    // устанавливаем новое поле
-    this.setState({squares: squares});
+    // заполняем выбранную клекту
+    squares[i] = this.state.xIsNext ? 'X' : 'O';;
+    // устанавливаем новое поле и меняем очередность игроков
+    this.setState({
+      squares: squares,
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   // метод рендера одной клетки
@@ -42,7 +47,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = 'Следующий ход: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
       <div>
