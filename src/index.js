@@ -2,6 +2,32 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+// определение победителя, squares - массив из 9 клеток
+function calculateWinner(squares) {
+  // линии - выйгрыши
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  // в цикле ищем каждую выйгрышную линию в массиве клеток
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+
+    // если на линии одинаковые символы, возвращаем символ
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
 // клетка
 function Square(props) {
   return (
@@ -27,6 +53,9 @@ class Board extends React.Component {
   handleClick(i) {
     // копируем старое поле в новую переменную
     const squares = this.state.squares.slice();
+
+    // если победитель есть, выходим из обработчика
+    if (calculateWinner(squares) || squares[i]) return;
     // заполняем выбранную клекту
     squares[i] = this.state.xIsNext ? 'X' : 'O';;
     // устанавливаем новое поле и меняем очередность игроков
@@ -47,7 +76,14 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Следующий ход: ' + (this.state.xIsNext ? 'X' : 'O');
+    // определение состояния игры
+    const winner = calculateWinner(this.state.squares);
+    let status;
+    if (winner) {
+      status = 'Выиграл ' + winner;
+    } else {
+      status = 'Следующий ход: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
 
     return (
       <div>
