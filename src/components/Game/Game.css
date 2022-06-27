@@ -23,10 +23,7 @@
   background-color: transparent;
   box-sizing: border-box;
   transition: .4s;
-  min-width: 140px;
-}
-
-.button {
+  min-width: 240px;
   margin-bottom: 20px;
 }
 
@@ -43,8 +40,20 @@
   border: 2px solid rgba(0, 0, 0, 0);
   transition: .4s;
 }
+
 .button:hover:after {
   border-color: #f1c40f;
   width: calc(100% - 10px);
   height: calc(100% + 10px);
+}
+
+@media screen and (max-width: 440px) {
+  .game {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game-info {
+    margin: 50px auto;
+  }
 }

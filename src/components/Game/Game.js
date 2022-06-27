@@ -16,6 +16,8 @@ class Game extends React.Component {
       stepNumber: 0,
       // первым ходит игрок Х
       xIsNext: true,
+      // позиция
+      position: [0, 0],
     };
   }
 
@@ -27,6 +29,11 @@ class Game extends React.Component {
     const current = history[history.length - 1];
     // копируем старое поле в текущую переменную
     const squares = current.squares.slice();
+    // получаем текущую позицию
+    const currentPosition = [
+      (i < 3) ? 1 : (i > 5 ? 3 : 2),
+      (i === 0 || i === 3 || i === 6) ? 1 : (i === 1 || i === 4 || i === 7 ? 2 : 3)
+    ];
 
     // если победитель есть, выходим из обработчика
     if (calculateWinner(squares) || squares[i]) return;
@@ -37,6 +44,7 @@ class Game extends React.Component {
       // записываем текущий ход в историю
       history: history.concat([{
         squares: squares,
+        position: currentPosition,
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
@@ -62,11 +70,14 @@ class Game extends React.Component {
     // ходы, step - текущее состояние истории, move - текущий ход
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Перейти к ходу #' + move :
+        `Перейти к ходу #${move}` :
         'К началу игры';
+      const position = step.position ?
+        ` - позиция (${step.position})` :
+        '';
       return (
         <li key={move}>
-          <button className="button" onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button className="button" onClick={_ => this.jumpTo(move)}>{`${desc} ${position}`}</button>
         </li>
       );
     });
@@ -83,7 +94,7 @@ class Game extends React.Component {
         <div className="game-board">
           <Board
             squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
+            onClick={i => this.handleClick(i)}
           />
         </div>
         <div className="game-info">
