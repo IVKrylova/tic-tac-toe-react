@@ -65,7 +65,7 @@ class Game extends React.Component {
     const history = this.state.history;
     // получаем текущий ход
     const current = history[this.state.stepNumber];
-    // определение победителя
+    // определение победителя и выигрышного ряда
     const winner = calculateWinner(current.squares);
     // ходы, step - текущее состояние истории, move - текущий ход
     const moves = history.map((step, move) => {
@@ -84,7 +84,7 @@ class Game extends React.Component {
     // определение состояния игры
     let status;
     if (winner) {
-      status = 'Выиграл ' + winner;
+      status = 'Выиграл ' + winner.winner;
     } else {
       status = 'Следующий ход: ' + (this.state.xIsNext ? 'X' : 'O');
     }
@@ -95,6 +95,7 @@ class Game extends React.Component {
           <Board
             squares={current.squares}
             onClick={i => this.handleClick(i)}
+            winnerRow={winner ? winner.row : []}
           />
         </div>
         <div className="game-info">

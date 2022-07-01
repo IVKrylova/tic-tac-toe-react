@@ -17,3 +17,7 @@
 .square:focus {
   outline: none;
 }
+
+.square_winning {
+  background-color: #000;
+}

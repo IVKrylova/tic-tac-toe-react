@@ -18,7 +18,7 @@
 
     // если на линии одинаковые символы, возвращаем символ
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return { winner: squares[a], row: lines[i]};
     }
   }
   return null;

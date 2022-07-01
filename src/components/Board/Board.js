@@ -11,6 +11,8 @@ class Board extends React.Component {
         value={this.props.squares[i]}
         onClick={_ => this.props.onClick(i)}
         key={i}
+        winnerRow={this.props.winnerRow}
+        cellNumber={i}
       />
     );
   }
