@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from '../Square/Square';
+import { FIELD } from '../../utils/constants';
 
 // поле
 class Board extends React.Component {
@@ -9,6 +10,7 @@ class Board extends React.Component {
       <Square
         value={this.props.squares[i]}
         onClick={_ => this.props.onClick(i)}
+        key={i}
       />
     );
   }
@@ -16,21 +18,15 @@ class Board extends React.Component {
   render() {
     return (
       <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        {
+          FIELD.map(row => {
+            return (
+              <div className="board-row" key={FIELD.indexOf(row)}>
+                {row.map(i => this.renderSquare(i))}
+              </div>
+            );
+          })
+        }
       </div>
     );
   }
