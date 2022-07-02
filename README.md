@@ -1,7 +1,8 @@
 # Tic-tac-toe
+Игра Крестики-нолики
 <img src="https://shields.io/badge/react-black?logo=react&style=for-the-badge%22" alt="React Badge"/>
 
-## Игра Крестики-нолики:
+## Игра:
   * показывает очередность хода
   * показывает победителя
   * хранит историю игры
