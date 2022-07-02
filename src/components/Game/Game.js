@@ -29,7 +29,7 @@ class Game extends React.Component {
     const current = history[history.length - 1];
     // копируем старое поле в текущую переменную
     const squares = current.squares.slice();
-    // получаем текущую позицию
+    // получаем текущую позицию, цифры - номера клеток
     const currentPosition = [
       (i < 3) ? 1 : (i > 5 ? 3 : 2),
       (i === 0 || i === 3 || i === 6) ? 1 : (i === 1 || i === 4 || i === 7 ? 2 : 3)
@@ -38,7 +38,7 @@ class Game extends React.Component {
     // если победитель есть, выходим из обработчика
     if (calculateWinner(squares) || squares[i]) return;
     // заполняем выбранную клекту
-    squares[i] = this.state.xIsNext ? 'X' : 'O';;
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
     // устанавливаем новое поле и меняем очередность игроков
     this.setState({
       // записываем текущий ход в историю
@@ -81,9 +81,12 @@ class Game extends React.Component {
         </li>
       );
     });
+
     // определение состояния игры
     let status;
-    if (winner) {
+    if (current.squares.indexOf(null) === -1 && !winner) {
+      status = 'Ничья';
+    } else if (winner) {
       status = 'Выиграл ' + winner.winner;
     } else {
       status = 'Следующий ход: ' + (this.state.xIsNext ? 'X' : 'O');
