@@ -1,5 +1,6 @@
 import React from 'react';
 import Board from '../Board/Board';
+import Switch from '../Switch/Switch';
 import { calculateWinner } from '../../utils/utils';
 import './Game.css';
 
@@ -7,8 +8,8 @@ import './Game.css';
 class Game extends React.Component {
   constructor(props) {
     super(props);
-    // состояние всего поля, хранимое в истории игры
     this.state = {
+      // состояние всего поля, хранимое в истории игры
       history: [{
         squares: Array(9).fill(null),
       }],
@@ -18,7 +19,10 @@ class Game extends React.Component {
       xIsNext: true,
       // позиция
       position: [0, 0],
+      // состояние переключателя
+      isIncrease: true,
     };
+    this.handleClickSwitch = this.handleClickSwitch.bind(this);
   }
 
   // обработчик клика по клетке
@@ -57,6 +61,14 @@ class Game extends React.Component {
       stepNumber: step,
       // четный ход 0, нечетный Х
       xIsNext: (step % 2) === 0,
+    });
+  }
+
+  // обработчик клика по переключателю сортировки фильмов
+  handleClickSwitch() {
+    this.setState({
+      // меняем стейт переключателя
+      isIncrease: this.state.isIncrease ? false : true,
     });
   }
 
@@ -103,7 +115,12 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
-          <ol>{moves}</ol>
+          <Switch
+            onClick={this.handleClickSwitch}
+            isIncrease={this.state.isIncrease}
+            moves={moves}
+          />
+          <ol>{this.state.isIncrease ? moves : moves.reverse()}</ol>
         </div>
       </div>
     );
