@@ -1,8 +1,9 @@
-# Tic-tac-toe
+# Игра Крестики-Нолики
 
-<img src="https://shields.io/badge/react-black?logo=react&style=for-the-badge%22" alt="React Badge"/>
+<img src="https://shields.io/badge/react-black?logo=react&style=for-the-badge%22" alt="React Badge"/><br>
 
-## Игра Крестики-нолики:
+
+## Функционал:
   * показывает очередность хода
   * показывает победителя
   * хранит историю игры
@@ -12,4 +13,4 @@
   * подсвечивает три клетки, которые привели к победе
   * когда победителя нет, показывает сообщение о том, что игра окончилась вничью
 
-[Ссылка на проект в GitHub Pages](https://ivkrylova.github.io/tic-tac-toe-react/)
+Поиграть можно [здесь](https://ivkrylova.github.io/tic-tac-toe-react/)
