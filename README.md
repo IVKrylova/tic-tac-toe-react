@@ -2,6 +2,8 @@
 
 <img src="https://shields.io/badge/react-black?logo=react&style=for-the-badge%22" alt="React Badge"/><br>
 
+## Демо
+Поиграть можно [здесь](https://ivkrylova.github.io/tic-tac-toe-react/)
 
 ## Функционал:
   * показывает очередность хода
@@ -12,5 +14,3 @@
   * позволяет сортировать ходы по возрастанию или по убыванию
   * подсвечивает три клетки, которые привели к победе
   * когда победителя нет, показывает сообщение о том, что игра окончилась вничью
-
-Поиграть можно [здесь](https://ivkrylova.github.io/tic-tac-toe-react/)
