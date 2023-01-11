@@ -1,6 +1,9 @@
 # Игра Крестики-Нолики
 
-<img src="https://shields.io/badge/react-black?logo=react&style=for-the-badge%22" alt="React Badge"/><br>
+## Стек технологий
+![](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
 ## Демо
 Поиграть можно [здесь](https://ivkrylova.github.io/tic-tac-toe-react/)
